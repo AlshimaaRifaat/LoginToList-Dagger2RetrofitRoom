@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "371734354586",
+    "project_id": "actualsample",
+    "storage_bucket": "actualsample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371734354586:android:49b81e3cf4c6adf9e09d23",
+        "android_client_info": {
+          "package_name": "unilever.it.org.actualsample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "371734354586-nnn0qrisurdf4kstb3arfivirdp0muuk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCh4YT0L5GOEIFVeVek11hkBJwlUqDQj8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "371734354586-nnn0qrisurdf4kstb3arfivirdp0muuk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
