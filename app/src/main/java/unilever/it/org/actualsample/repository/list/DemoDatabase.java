@@ -9,7 +9,7 @@ import unilever.it.org.actualsample.database.Product;
 @Database(entities = {Product.class}, version = DemoDatabase.VERSION)
 public abstract class DemoDatabase extends RoomDatabase {
 
-    static final int VERSION = 1;
+    static final int VERSION = 2;
 
     public abstract ProductDao getProductDao();
 

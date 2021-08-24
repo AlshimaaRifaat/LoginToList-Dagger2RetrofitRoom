@@ -28,6 +28,7 @@ public class RoomModule {
     @Provides
     DemoDatabase providesRoomDatabase(Context context) {
         demoDatabase = Room.databaseBuilder(context,DemoDatabase.class, "demo-db")
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries().build();
         return demoDatabase;
     }

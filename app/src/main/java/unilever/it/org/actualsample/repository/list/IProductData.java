@@ -11,7 +11,7 @@ import unilever.it.org.actualsample.database.Product;
 
 public  interface IProductData {
 
-   // LiveData<Product> findById(int id);
+   Observable<ServiceWrapper<DataHolderDTO<Product>>> searchByTitle(String title);
 
  Observable<ServiceWrapper<DataHolderDTO<Product>>> findAll(Object map);
 

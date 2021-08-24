@@ -30,6 +30,10 @@ public class ProductDataSource  {
 
     public Observable<ServiceWrapper<DataHolderDTO<Product>>> getData(Object dataFilter) {
         return localProductData.findAll(dataFilter);
-
     }
+    public Observable<ServiceWrapper<DataHolderDTO<Product>>> searchByTitle(Object dataFilter) {
+        return localProductData.searchByTitle((String) dataFilter);
+    }
+
+
 }

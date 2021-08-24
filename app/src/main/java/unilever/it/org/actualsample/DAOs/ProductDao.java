@@ -15,8 +15,8 @@ import unilever.it.org.actualsample.database.Product;
 
 @Dao
 public interface ProductDao {
-    @Query("SELECT * FROM Product WHERE id=:id")
-    LiveData<Product> findById(int id);
+    @Query("SELECT * FROM Product where title = :title")
+    List<Product> searchByTitle(String title);
 
     @Query("SELECT * FROM Product")
    List<Product> findAll();

@@ -23,17 +23,20 @@ public class LocalProductData extends LocalDataSourece<DataHolderDTO<Product>> i
 
     }
 
-  /*  @Override
-    public Observable<List<Product>> findList(Object map) {
-        Product salesman = new Product();
 
-        return Observable.just(simulateORMToRX(salesman));
-    }*/
+
+
+    @Override
+    public Observable<ServiceWrapper<DataHolderDTO<Product>>> searchByTitle(String title) {
+        List<Product> productList=productDao.searchByTitle(title);
+        DataHolderDTO<Product> dataHolder = new DataHolderDTO<>();
+        dataHolder.setListData(productList);
+        return Observable.just(simulateORMToRX(dataHolder));
+    }
 
     @Override
     public Observable<ServiceWrapper<DataHolderDTO<Product>>> findAll(Object map) {
         List<Product> productList=productDao.findAll();
-//check function
         DataHolderDTO<Product> dataHolder = new DataHolderDTO<>();
         dataHolder.setListData(productList);
         return Observable.just(simulateORMToRX(dataHolder));

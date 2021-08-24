@@ -1,12 +1,16 @@
 package unilever.it.org.actualsample.ui.fragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,10 +30,11 @@ public class ProductListFragment extends BaseFragment {
 
 
     public ProductListViewModel mViewModel;
-   // Button btnGetList;
-    private List<Product> productList;
     RecyclerView rvProducts;
     ProductListAdapter itemsAdapter;
+
+    EditText etSearch;
+    String referenceKey;
     public ProductListFragment() {
         // Required empty public constructor
     }
@@ -49,55 +54,74 @@ public class ProductListFragment extends BaseFragment {
     protected void OnCreateViewJob(View view) {
         super.OnCreateViewJob(view);
         rvProducts = view.findViewById(R.id.rvProducts);
-
-
+        etSearch = view.findViewById(R.id.etSearch);
     }
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        //btnGetList=view.findViewById(R.id.btnGetList);
 
 
-
-        /*Product product=new Product(22,"tttt","des");
-        long count=productRepository.insert(product);
-
-        Toast.makeText(mContext, "count: "+count, Toast.LENGTH_SHORT).show();
-
-*/
-       /* btnGetList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               mViewModel.getProductList();
-            }
-        });*/
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this, mViewModelFactory).get(ProductListViewModel.class);
-        getProductList();
+       getProductList();
+
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged( Editable text) {
+                referenceKey = text.toString();
+                if(referenceKey.isEmpty()){
+                    getProductList();
+                }else {
+                    getSearchResultList(referenceKey);
+                }
+
+            }
+        });
+
+
+    }
+
+    private void getSearchResultList(String title) {
+        Observer productSearchObserver = new Observer<DataHolderDTO<Product>>() {
+            @Override
+            public void onChanged(@Nullable DataHolderDTO<Product> data) {
+
+                Toast.makeText(mContext,"size: "+ data.getDataList().size(), Toast.LENGTH_SHORT).show();
+
+                rvProducts.setLayoutManager(new LinearLayoutManager(mContext));
+                itemsAdapter = new ProductListAdapter(mContext);
+                itemsAdapter.setAdapter(data.getDataList());
+                rvProducts.setAdapter(itemsAdapter);
+
+            }
+        };
+        mViewModel.searchList().observe(getViewLifecycleOwner(), productSearchObserver);
+        mViewModel.getSearchResultList(title);
     }
 
     private void getProductList() {
         Observer productsObserver = new Observer<DataHolderDTO<Product>>() {
             @Override
             public void onChanged(@Nullable DataHolderDTO<Product> data) {
-              /*  if (data != null ) {
-                    productList = data.getDataList();
-                } else {
-                    productList = new ArrayList<>();
-                }*/
+
                 Toast.makeText(mContext,"size: "+ data.getDataList().size(), Toast.LENGTH_SHORT).show();
-              /*  mViewModel.getList().removeObserver(this);
-                mViewModel.removeTransactions();*/
+
                 rvProducts.setLayoutManager(new LinearLayoutManager(mContext));
                 itemsAdapter = new ProductListAdapter(mContext);
                 itemsAdapter.setAdapter(data.getDataList());
                 rvProducts.setAdapter(itemsAdapter);
+                itemsAdapter.notifyDataSetChanged();
             }
         };
         mViewModel.getList().observe(getViewLifecycleOwner(), productsObserver);
