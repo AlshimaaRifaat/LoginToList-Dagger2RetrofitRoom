@@ -14,7 +14,8 @@ import unilever.it.org.actualsample.base.ServiceWrapper;
 import unilever.it.org.actualsample.database.DataHolderDTO;
 import unilever.it.org.actualsample.database.Product;
 
-public class LocalProductData extends LocalDataSourece<DataHolderDTO<Product>> implements IProductData {
+public class LocalProductData extends LocalDataSourece<DataHolderDTO<Product>>
+        implements IProductData {
     private ProductDao productDao;
 
    @Inject
@@ -40,6 +41,21 @@ public class LocalProductData extends LocalDataSourece<DataHolderDTO<Product>> i
         DataHolderDTO<Product> dataHolder = new DataHolderDTO<>();
         dataHolder.setListData(productList);
         return Observable.just(simulateORMToRX(dataHolder));
+    }
+
+    @Override
+    public Observable<ServiceWrapper<String>> deleteAllProducts(Object map) {
+        try {
+
+          /*  List<Product> transactionData = (List<Product>) map;
+            for (Product details:transactionData) {
+                details.getTransactionDetails().get(0).deleteAll(databaseHelper);
+            }*/
+           productDao.deleteAll();
+            return Observable.just(simulateRX("success"));
+        } catch (Exception e) {
+            return Observable.just(simulateRX(e.getMessage()));
+        }
     }
 
 

@@ -15,8 +15,9 @@ public  interface IProductData {
 
  Observable<ServiceWrapper<DataHolderDTO<Product>>> findAll(Object map);
 
-   /* long insert(Product product);
+   //long insert(Product product);
 
-    int delete(Product product);*/
+   // Observable<ServiceWrapper<Integer>> delete(Product product);
+   Observable<ServiceWrapper<String>> deleteAllProducts(Object map);
 
 }

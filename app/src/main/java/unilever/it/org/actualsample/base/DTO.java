@@ -1,4 +1,7 @@
 package unilever.it.org.actualsample.base;
 
-public abstract class DTO {
+import unilever.it.org.actualsample.repository.list.DemoDatabase;
+
+public abstract class DTO<T> {
+
 }

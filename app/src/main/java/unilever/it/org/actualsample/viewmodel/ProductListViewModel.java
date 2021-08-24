@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.security.Provider;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +11,7 @@ import javax.inject.Inject;
 import unilever.it.org.actualsample.base.ServiceWrapper;
 import unilever.it.org.actualsample.database.DataHolderDTO;
 import unilever.it.org.actualsample.database.Product;
+import unilever.it.org.actualsample.usecase.ProductDeletionUseCase;
 import unilever.it.org.actualsample.usecase.ProductListUseCase;
 import unilever.it.org.actualsample.usecase.ProductSearchUseCase;
 import unilever.it.org.actualsample.usecase.UseCaseObserver;
@@ -22,13 +22,17 @@ public class ProductListViewModel extends ViewModel {
 
     private MutableLiveData<DataHolderDTO<Product>> productSearchMutableLiveData;
     private ProductSearchUseCase productSearchUseCase;
+    private ProductDeletionUseCase productDeletionUseCase;
     private static final String TAG = "ListViewModel";
+    private MutableLiveData<String> deleteAllMutableLiveData;
 
     @Inject
     public ProductListViewModel(ProductListUseCase productListUseCase
-    ,ProductSearchUseCase productSearchUseCase) {
+    ,ProductSearchUseCase productSearchUseCase,
+     ProductDeletionUseCase productDeletionUseCase) {
         this.productListUseCase = productListUseCase;
         this.productSearchUseCase=productSearchUseCase;
+        this.productDeletionUseCase=productDeletionUseCase;
     }
 
     public LiveData<DataHolderDTO<Product>> getList() {
@@ -44,7 +48,12 @@ public class ProductListViewModel extends ViewModel {
         }
         return productSearchMutableLiveData;
     }
-
+    public MutableLiveData<String> getDeleteAllProducts() {
+        if (deleteAllMutableLiveData == null) {
+            deleteAllMutableLiveData = new MutableLiveData<>();
+        }
+        return deleteAllMutableLiveData;
+    }
 
 
     public void getProductList(){
@@ -80,4 +89,24 @@ public class ProductListViewModel extends ViewModel {
                 title);
 
     }
+
+
+    public void deleteAllProducts(List<Product> data) {
+
+        productDeletionUseCase.execute(new UseCaseObserver<ServiceWrapper<String>>() {
+                                          @Override
+                                          public void onSuccess(ServiceWrapper<String> result) {
+                                              deleteAllMutableLiveData.setValue(result.getData());
+                                          }
+
+                                          @Override
+                                          public void onFailed(String errorModel) {
+                                              deleteAllMutableLiveData.setValue(errorModel);
+                                          }
+                                      },
+                data);
+
+
+    }
+
 }

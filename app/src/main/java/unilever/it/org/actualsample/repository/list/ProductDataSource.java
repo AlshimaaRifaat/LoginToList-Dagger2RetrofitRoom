@@ -35,5 +35,8 @@ public class ProductDataSource  {
         return localProductData.searchByTitle((String) dataFilter);
     }
 
+    public Observable<ServiceWrapper<String>> deleteAllProducts(final Object dataFilter) {
+        return localProductData.deleteAllProducts(dataFilter);
+    }
 
 }

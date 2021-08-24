@@ -11,12 +11,14 @@
         android:layout_height="40dp"
         android:id="@+id/etSearch"
         android:textColor="@color/black"
+        android:background="#00D6981A"
+        android:hint="search"
         />
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="300dp"
     android:id="@+id/rvProducts"
-
+android:layout_marginTop="12dp"
     />
   <!--  <Button
         android:id="@+id/btnGetList"
@@ -28,4 +30,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 -->
+    <ImageView
+        android:id="@+id/ivDeleteAll"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+
+        android:src="@drawable/ic_delete"
+        android:backgroundTint="#9E9E9E"/>
 </LinearLayout>

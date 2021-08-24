@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 import unilever.it.org.actualsample.base.DTO;
+import unilever.it.org.actualsample.repository.list.DemoDatabase;
 
 public class DataHolderDTO<T> extends DTO {
 
@@ -24,13 +25,11 @@ public class DataHolderDTO<T> extends DTO {
         this.listData = listData;
     }
 
-   /* @Override
+
+ /*  @Override
     public void save(DatabaseHelper dbHelper) {
 
-    }
-
-    @Override
-    public void deleteAll(DatabaseHelper dbHelper) {
-
     }*/
+
+
 }

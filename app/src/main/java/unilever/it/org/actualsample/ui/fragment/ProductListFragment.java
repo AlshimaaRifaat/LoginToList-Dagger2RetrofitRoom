@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import unilever.it.org.actualsample.R;
@@ -35,6 +37,8 @@ public class ProductListFragment extends BaseFragment {
 
     EditText etSearch;
     String referenceKey;
+    ImageView ivDeleteAll;
+    List<Product> productList;
     public ProductListFragment() {
         // Required empty public constructor
     }
@@ -55,6 +59,7 @@ public class ProductListFragment extends BaseFragment {
         super.OnCreateViewJob(view);
         rvProducts = view.findViewById(R.id.rvProducts);
         etSearch = view.findViewById(R.id.etSearch);
+        ivDeleteAll=view.findViewById(R.id.ivDeleteAll);
     }
 
 
@@ -89,15 +94,33 @@ public class ProductListFragment extends BaseFragment {
             }
         });
 
+        ivDeleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteAllProducts(productList);
 
+            }
+        });
+    }
+
+    private void deleteAllProducts(List<Product> data) {
+        Observer deletionObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String data) {
+                mViewModel.getDeleteAllProducts().removeObserver(this);
+                //  mViewModel.removeDeleteTransactions();
+            }
+        };
+        mViewModel.getDeleteAllProducts().observe(getViewLifecycleOwner(), deletionObserver);
+        mViewModel.deleteAllProducts(data);
+
+        getProductList();
     }
 
     private void getSearchResultList(String title) {
         Observer productSearchObserver = new Observer<DataHolderDTO<Product>>() {
             @Override
             public void onChanged(@Nullable DataHolderDTO<Product> data) {
-
-                Toast.makeText(mContext,"size: "+ data.getDataList().size(), Toast.LENGTH_SHORT).show();
 
                 rvProducts.setLayoutManager(new LinearLayoutManager(mContext));
                 itemsAdapter = new ProductListAdapter(mContext);
@@ -116,7 +139,11 @@ public class ProductListFragment extends BaseFragment {
             public void onChanged(@Nullable DataHolderDTO<Product> data) {
 
                 Toast.makeText(mContext,"size: "+ data.getDataList().size(), Toast.LENGTH_SHORT).show();
-
+                if (data != null && data.getDataList().size() > 0) {
+                    productList = data.getDataList();
+                } else {
+                    productList = new ArrayList<>();
+                }
                 rvProducts.setLayoutManager(new LinearLayoutManager(mContext));
                 itemsAdapter = new ProductListAdapter(mContext);
                 itemsAdapter.setAdapter(data.getDataList());
