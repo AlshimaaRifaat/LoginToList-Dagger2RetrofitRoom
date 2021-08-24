@@ -1,12 +1,11 @@
-package unilever.it.org.actualsample;
+package unilever.it.org.actualsample.api;
 
 import io.reactivex.Observable;
-import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.Streaming;
-import unilever.it.org.actualsample.api.ServiceWrapper;
+import unilever.it.org.actualsample.Data;
+import unilever.it.org.actualsample.database.User;
+import unilever.it.org.actualsample.base.ServiceWrapper;
 
 public interface RetrofitPostAPI {
 

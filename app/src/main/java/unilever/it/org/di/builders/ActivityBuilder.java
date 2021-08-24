@@ -2,9 +2,7 @@ package unilever.it.org.di.builders;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import unilever.it.org.actualsample.ui.HomeActivity;
-import unilever.it.org.actualsample.ui.MainActivity;
-import unilever.it.org.di.modules.RetrofitModule;
+import unilever.it.org.actualsample.ui.activity.MainActivity;
 
 @Module
 public abstract class ActivityBuilder {

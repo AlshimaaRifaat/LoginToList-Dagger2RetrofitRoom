@@ -6,7 +6,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import unilever.it.org.actualsample.Data;
 
-import unilever.it.org.actualsample.api.ServiceWrapper;
+import unilever.it.org.actualsample.base.ServiceWrapper;
 import unilever.it.org.actualsample.base.BaseUseCase;
 import unilever.it.org.actualsample.repository.login.LoginDataSource;
 

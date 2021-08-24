@@ -1,9 +1,5 @@
 package unilever.it.org.actualsample.viewmodel;
 
-import android.content.SharedPreferences;
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -11,8 +7,8 @@ import javax.inject.Inject;
 
 import unilever.it.org.actualsample.Data;
 
-import unilever.it.org.actualsample.User;
-import unilever.it.org.actualsample.api.ServiceWrapper;
+import unilever.it.org.actualsample.database.User;
+import unilever.it.org.actualsample.base.ServiceWrapper;
 import unilever.it.org.actualsample.usecase.LoginUseCase;
 import unilever.it.org.actualsample.usecase.UseCaseObserver;
 

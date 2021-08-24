@@ -1,4 +1,4 @@
-package unilever.it.org.actualsample.ui;
+package unilever.it.org.actualsample.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -12,7 +12,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 import unilever.it.org.actualsample.R;
-import unilever.it.org.actualsample.ui.LoginFragment;
+import unilever.it.org.actualsample.ui.fragment.LoginFragment;
 import unilever.it.org.actualsample.utils.SecureAndroidConnectionSource;
 
 public class MainActivity  extends AppCompatActivity implements HasSupportFragmentInjector {

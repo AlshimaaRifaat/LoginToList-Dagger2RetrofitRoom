@@ -1,4 +1,4 @@
-package unilever.it.org.actualsample.api;
+package unilever.it.org.actualsample.base;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

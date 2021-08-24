@@ -1,4 +1,4 @@
-package unilever.it.org.actualsample.ui;
+package unilever.it.org.actualsample.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import unilever.it.org.actualsample.Data;
 import unilever.it.org.actualsample.R;
-import unilever.it.org.actualsample.User;
 import unilever.it.org.actualsample.base.BaseFragment;
 import unilever.it.org.actualsample.viewmodel.LoginViewModel;
 
@@ -59,7 +58,8 @@ public class LoginFragment extends BaseFragment {
 
 
                     mViewModel.loginAction("ahmedateya47@gmail.com","111111",1);
-                /* else {
+
+                    /* else {
                     *//*CommonUtils.showSnackbar(mContext, LoginFragment.this.getView(),
                             getString(R.string.login_msg_validation));*//*
                     Toast.makeText(mContext, "user name or password error", Toast.LENGTH_SHORT).show();
@@ -85,7 +85,8 @@ public class LoginFragment extends BaseFragment {
                     ((LoginActivity) mContext).finish();*/
 
                     Toast.makeText(mContext, loginUser.getAccessToken(), Toast.LENGTH_SHORT).show();
-
+                    getFragmentManager().beginTransaction().replace(R.id.container,new ProductListFragment())
+                            .addToBackStack(null).commit();
                 } else {
                     btnServerLogin.setEnabled(true);
                  /*   CommonUtils.showSnackbar(mContext, LoginFragment.this.getView(),

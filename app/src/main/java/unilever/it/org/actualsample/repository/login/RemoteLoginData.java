@@ -6,9 +6,9 @@ import io.reactivex.Observable;
 import retrofit2.Retrofit;
 import unilever.it.org.actualsample.Data;
 
-import unilever.it.org.actualsample.RetrofitPostAPI;
-import unilever.it.org.actualsample.User;
-import unilever.it.org.actualsample.api.ServiceWrapper;
+import unilever.it.org.actualsample.api.RetrofitPostAPI;
+import unilever.it.org.actualsample.database.User;
+import unilever.it.org.actualsample.base.ServiceWrapper;
 
 public class RemoteLoginData implements ILoginData {
 

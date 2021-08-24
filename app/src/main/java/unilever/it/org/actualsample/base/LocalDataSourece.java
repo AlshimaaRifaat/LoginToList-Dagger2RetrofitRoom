@@ -1,11 +1,5 @@
 package unilever.it.org.actualsample.base;
 
-import javax.inject.Inject;
-
-import unilever.it.org.actualsample.Data;
-
-import unilever.it.org.actualsample.api.ServiceWrapper;
-
 
 //import unilever.it.org.storekeeper.database.orm.DatabaseHelper;
 

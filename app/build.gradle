@@ -1,6 +1,6 @@
 
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -72,9 +72,10 @@ dependencies {
     //implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.interceptorVersion"
 
     implementation "com.android.support:multidex:$rootProject.multidexVersion"
-    implementation platform('com.google.firebase:firebase-bom:28.3.1')
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-core:16.0.9'
-    implementation 'com.google.firebase:firebase-messaging:18.0.0'
+
+    compile "android.arch.persistence.room:runtime:$rootProject.roomLifecycleVersion"
+    compile "android.arch.persistence.room:runtime:$rootProject.roomLifecycleVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomLifecycleVersion"
+
 
 }

@@ -5,9 +5,8 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import unilever.it.org.actualsample.Data;
 
-import unilever.it.org.actualsample.api.ServiceWrapper;
+import unilever.it.org.actualsample.base.ServiceWrapper;
 import unilever.it.org.actualsample.base.Repository;
-import unilever.it.org.actualsample.repository.login.LocalLoginData;
 
 public class LoginDataSource extends Repository {
 

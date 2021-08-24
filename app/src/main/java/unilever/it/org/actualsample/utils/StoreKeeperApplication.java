@@ -22,6 +22,7 @@ import unilever.it.org.di.components.DaggerApplicationComponent;
 import unilever.it.org.di.components.DaggerGeneralApplicationComponent;
 import unilever.it.org.di.components.GeneralApplicationComponent;
 import unilever.it.org.di.modules.ApplicationModule;
+import unilever.it.org.di.modules.RoomModule;
 
 public class StoreKeeperApplication extends MultiDexApplication implements HasActivityInjector {
 
@@ -34,7 +35,7 @@ public class StoreKeeperApplication extends MultiDexApplication implements HasAc
     @Override
     public void onCreate() {
         super.onCreate();
-       DaggerApplicationComponent.builder().application(this).build().inject(this);
+        DaggerApplicationComponent.builder().application(this).build().inject(this);
 
         BASE_URL = BuildConfig.BASE_URL;
         applicationComponent = DaggerGeneralApplicationComponent.builder()

@@ -10,19 +10,22 @@ import dagger.android.AndroidInjectionModule;
 import unilever.it.org.actualsample.utils.StoreKeeperApplication;
 import unilever.it.org.di.builders.ActivityBuilder;
 import unilever.it.org.di.modules.ContextModule;
+
 import unilever.it.org.di.modules.RetrofitModule;
+import unilever.it.org.di.modules.RoomModule;
+
 
 @Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
         ContextModule.class,
         ActivityBuilder.class,
-      /*  ServiceModule.class,
+       /* ServiceModule.class,
         ConnectionCheckerModule.class,
         DeviceSerialModule.class,
         SharedPreferencesModule.class,*/
         RetrofitModule.class,
-       // DataBaseModule.class
+        RoomModule.class
 
         /* DBConnectionModule.class*/
 
@@ -31,9 +34,9 @@ public interface ApplicationComponent {
     void inject(StoreKeeperApplication context);
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
         @BindsInstance
-       Builder application(Application application);
+        Builder application(Application application);
 
         ApplicationComponent build();
     }
